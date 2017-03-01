@@ -1,0 +1,20 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class jump : MonoBehaviour {
+
+	void Update () {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
+        print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
+        if (hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .1f)
+        {
+            if (Input.GetKey("space"))
+                Jump();
+        } 
+	}
+    
+    void Jump()
+    {
+        GetComponent<Rigidbody2D>().AddForce(Vector3.up * 400f);
+    }
+}
