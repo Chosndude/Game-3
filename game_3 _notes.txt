@@ -6,4 +6,5 @@ jumping
 laning on top of other player
 shooting
 line behind player other player cannot land on/roll into other player 
+push other player off platform
 
