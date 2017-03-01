@@ -1,0 +1,9 @@
+figher
+street fighter view
+
+movement
+jumping
+laning on top of other player
+shooting
+line behind player other player cannot land on/roll into other player 
+
