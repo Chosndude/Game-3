@@ -6,7 +6,7 @@ public class jump : MonoBehaviour {
     float timer;
 	void Update () {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-        print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
+        //print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
         if (hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .1f)
         {
             if (Input.GetKey("space") && active == false)
