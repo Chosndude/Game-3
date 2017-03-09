@@ -6,7 +6,7 @@ public class jump : MonoBehaviour {
     float timer;
 	void Update () {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-        print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
+        //print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
         if (hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .1f)
         {
             if (Input.GetKey("space") && active == false)
@@ -14,8 +14,13 @@ public class jump : MonoBehaviour {
         }
         if (active) {
             timer += Time.deltaTime;
-            if (timer > .3f)
+            if (timer > .2f &&
+                hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .3f)
+            {
+                print("therewego");
                 active = false;
+                timer = 0f;
+            }
         }
         
 	}
@@ -24,5 +29,10 @@ public class jump : MonoBehaviour {
     {
         GetComponent<Rigidbody2D>().AddForce(Vector3.up * 400f);
         active = true;
+    }
+
+    public bool onGround()
+    {
+        return !active;
     }
 }
