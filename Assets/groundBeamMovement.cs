@@ -16,4 +16,19 @@ public class groundBeamMovement : MonoBehaviour
         movement.y = Yspeed * Time.deltaTime;
         transform.Translate(movement);
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player2"))
+        {
+            other.gameObject.GetComponent<playerMovement>().freezeMovement();
+        }
+    }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player2"))
+        {
+            other.gameObject.GetComponent<playerMovement>().defaultMovement();
+        }
+    }
 }

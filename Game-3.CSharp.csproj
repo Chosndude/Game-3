@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\beamMovement.cs" />
     <Compile Include="Assets\Scripts\hit.cs" />
     <Compile Include="Assets\Scripts\jump.cs" />
+    <Compile Include="Assets\Scripts\jumpOnTop.cs" />
     <Compile Include="Assets\Scripts\playerAttack.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
     <Compile Include="Assets\Scripts\playerHealth.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\updateHealth.cs" />
     <Compile Include="Assets\groundBeam.cs" />
     <Compile Include="Assets\groundBeamMovement.cs" />
+    <Compile Include="Assets\shootGroundBeam.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

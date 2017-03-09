@@ -4,9 +4,15 @@ using System.Collections;
 public class playerMovement : MonoBehaviour {
 
     public float speed = 8f;
+    float speedCopy;
     Vector3 movement;
     public Animator anim;
     bool direction;
+    
+    void Start()
+    {
+        speedCopy = speed;
+    }
 
 	void Update () {
 
@@ -57,11 +63,12 @@ public class playerMovement : MonoBehaviour {
 
     public void freezeMovement()
     {
+        speedCopy = speed;
         speed = 0f;
     }
 
     public void defaultMovement()
     {
-        speed = 8f;
+        speed = speedCopy;
     }
 }

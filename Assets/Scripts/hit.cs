@@ -3,7 +3,8 @@ using System.Collections;
 
 public class hit : MonoBehaviour
 {
-    int damage = 10;
+    int attackDamage = 10;
+    int jabDamage = 1;
     bool attacking;
     bool dealtDamage;
     bool inTrigger;
@@ -19,13 +20,19 @@ public class hit : MonoBehaviour
         }
         else
             transform.position.Set(GameObject.FindWithTag("Player").transform.position.x + 2, transform.position.y, transform.position.z);
-
-        if (!attacking && inTrigger && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .75f &&
-            (anim.GetCurrentAnimatorStateInfo(0).IsName("attack_right") || anim.GetCurrentAnimatorStateInfo(0).IsName("attack_left")))
+            print(attacking);
+        if (attacking == false && inTrigger && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .75f)
         {
-            print("damage");
-            enemy.GetComponent<updateHealth>().takeDamage(damage);
-            attacking = true;
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("jab_right"))
+            {
+                enemy.GetComponent<updateHealth>().takeDamage(jabDamage);
+                attacking = true;
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack_right"))
+            {
+                enemy.GetComponent<updateHealth>().takeDamage(attackDamage);
+                attacking = true;
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)

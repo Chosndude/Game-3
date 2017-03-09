@@ -12,17 +12,26 @@ public class playerAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (anim.GetInteger("attacking") == 0 && Input.GetKey("q"))
+        if (anim.GetInteger("attacking") == 0)
         {
-            print("anim");
-            anim.SetInteger("attacking", 2);
-            GetComponent<playerMovement>().freezeMovement();
+            if (Input.GetKey("q")) {
+                anim.SetInteger("attacking", 2);
+                GetComponent<playerMovement>().freezeMovement();
+            }
+            else if (Input.GetKey("t"))
+            {
+                anim.SetInteger("attacking", 1);
+            }
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.1f && (anim.GetCurrentAnimatorStateInfo(0).IsName("attack_right") || anim.GetCurrentAnimatorStateInfo(0).IsName("attack_left")))
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.1f)
         {
-            anim.SetInteger("attacking", 0);
-            h.setAttack(false);
-            GetComponent<playerMovement>().defaultMovement();
+            print("now");
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack_right") || anim.GetCurrentAnimatorStateInfo(0).IsName("jab_right"))
+            {
+                h.setAttack(false);
+                anim.SetInteger("attacking", 0);
+                GetComponent<playerMovement>().defaultMovement();
+            }
         }
 
     }
