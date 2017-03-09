@@ -9,9 +9,10 @@ public class updateHealth : MonoBehaviour {
     float ratio = 0f;
     float hitPoint = 100;
     float maxHitPoint = 100;
-    public Image healthBar;
+    public Image healthBar = null;
+    public Image outline = null;
     public Text healthText = null;
-    float timer;
+    public Text healthTextOptional = null;
     bool hit;
 
     void Start()
@@ -19,41 +20,30 @@ public class updateHealth : MonoBehaviour {
         healthText.color = Color.white;
     }
 	void Update () {
-        timer += Time.deltaTime;
-        if (hit)
-        {
-            if(timer > 5f)
-            {
-                timer = 0f;
-                hit = false;
-            }
-        }
-        if(timer>2 && hitPoint < maxHitPoint && !hit)
-        {
-            hitPoint += 10;
-            timer = 0f;
-            if (hitPoint > maxHitPoint)
-                hitPoint = maxHitPoint;
-        }
         updateHealthBar();
         if(hitPoint <= 0)
         {
-            SceneManager.LoadScene(3);
+            //nextRound
         }
             
 	}
 
     public void takeDamage(int damage)
     {
-        hitPoint -= damage;
-        hit = true;
-        timer = 0f;
+        if (hitPoint > 0)
+        {
+            hitPoint -= damage;
+            hit = true;
+        }
+        print(hitPoint);
     }
 
     void updateHealthBar()
     {
         ratio = hitPoint / maxHitPoint;
         healthBar.rectTransform.localScale = new Vector3(ratio, 1f, 1f);
+        outline.rectTransform.localScale = new Vector3(ratio, 1f, 1f);
         healthText.text = "" + hitPoint;
+        healthTextOptional.text = "" + hitPoint;
     }
 }
