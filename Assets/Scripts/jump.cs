@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class jump : MonoBehaviour {
+public class jump : NetworkBehaviour {
     bool active;
     float timer;
 	void Update () {
+		if (!isLocalPlayer) {
+			return;
+		}
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
         //print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
         if (hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .1f)

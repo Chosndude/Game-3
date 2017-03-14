@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class playerAttack : MonoBehaviour {
+public class playerAttack : NetworkBehaviour {
 
     Animator anim;
     public hit h;
@@ -12,6 +13,9 @@ public class playerAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!isLocalPlayer) {
+			return;
+		}
         if (anim.GetInteger("attacking") == 0)
         {
             if (Input.GetKey("q")) {

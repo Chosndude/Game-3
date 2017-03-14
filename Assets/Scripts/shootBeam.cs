@@ -16,7 +16,8 @@ public class shootBeam : MonoBehaviour
     {
         if (!shooting && Input.GetKey("e"))
         {
-            Instantiate(beam, new Vector3(transform.position.x + Xdist, transform.position.y + Ydist, transform.position.z), Quaternion.identity);
+			
+			Destroy(Instantiate(beam, new Vector3(transform.position.x + Xdist, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject, 2);
             shooting = true;
         }
         else

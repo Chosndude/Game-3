@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
-
-public class updateHealth : MonoBehaviour {
+public class updateHealth : NetworkBehaviour {
 
     float ratio = 0f;
     float hitPoint = 100;
@@ -17,7 +17,7 @@ public class updateHealth : MonoBehaviour {
 
     void Start()
     {
-        healthText.color = Color.white;
+//        healthText.color = Color.white;
     }
 	void Update () {
         updateHealthBar();

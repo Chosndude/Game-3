@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class playerMovement : MonoBehaviour {
+public class playerMovement : NetworkBehaviour {
 
     public float speed = 8f;
     float speedCopy;
@@ -15,6 +16,9 @@ public class playerMovement : MonoBehaviour {
     }
 
 	void Update () {
+		if (!isLocalPlayer) {
+			return;
+		}
 
         if (Input.GetKey("s"))
         {

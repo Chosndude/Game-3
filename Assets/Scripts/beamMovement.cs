@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class beamMovement : MonoBehaviour
+public class beamMovement : NetworkBehaviour
 {
 
     int damage = 1;
@@ -28,9 +29,7 @@ public class beamMovement : MonoBehaviour
             other.gameObject.GetComponent<updateHealth>().takeDamage(damage);
             Destroy(this.gameObject);
         }
-        if (other.CompareTag("Boundary"))
-        {
-            Destroy(this.gameObject);
-        }
+ 
+
     }
 }
