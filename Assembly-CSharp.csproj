@@ -46,7 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Billboard.cs" />
      <Compile Include="Assets\Scripts\Beam.cs" />
+     <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\beamMovement.cs" />
      <Compile Include="Assets\Scripts\hit.cs" />

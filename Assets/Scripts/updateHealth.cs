@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
 public class updateHealth : NetworkBehaviour {
-
+	
     float ratio = 0f;
-    float hitPoint = 100;
+	[SyncVar]
+	public int hitPoint = 100;
     float maxHitPoint = 100;
     public Image healthBar = null;
     public Image outline = null;
@@ -17,7 +18,7 @@ public class updateHealth : NetworkBehaviour {
 
     void Start()
     {
-//        healthText.color = Color.white;
+      healthText.color = Color.white;
     }
 	void Update () {
         updateHealthBar();

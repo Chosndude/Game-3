@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class playerHealth : MonoBehaviour {
-
-    int hitPoints = 100;
+public class playerHealth : NetworkBehaviour {
+	[SyncVar]
+    public int hitPoints = 100;
     int maxHitPoints = 100;
 
 	void Update () {
@@ -12,7 +13,9 @@ public class playerHealth : MonoBehaviour {
 	}
 
     public void takeDamage(int damage)
-    {
+	{	if (!isServer) {
+			return;
+		}
         if (hitPoints > 0)
         {
             hitPoints -= damage;

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+
 public class beamMovement : NetworkBehaviour
 {
 
@@ -12,8 +13,7 @@ public class beamMovement : NetworkBehaviour
 
     void Start()
     {
-        print(GameObject.FindWithTag("Player").GetComponent<playerMovement>().getDirection());
-        if (GameObject.FindWithTag("Player").GetComponent<playerMovement>().getDirection() == false)
+		if (gameObject.GetComponentInParent<playerMovement>().getDirection() == false)
             dir = -1;
     }
     void Update()
@@ -22,9 +22,13 @@ public class beamMovement : NetworkBehaviour
         transform.Translate(movement);
     }
 
+
+
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player2"))
+
         {
             other.gameObject.GetComponent<updateHealth>().takeDamage(damage);
             Destroy(this.gameObject);

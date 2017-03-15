@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class shootGroundBeam : MonoBehaviour {
+public class shootGroundBeam : NetworkBehaviour {
 
 
     public GameObject groundBeam;
@@ -13,6 +14,9 @@ public class shootGroundBeam : MonoBehaviour {
     
 	void Update ()
     {
+		if (!isLocalPlayer) {
+			return;
+		}
 	    if (!shooting && Input.GetKey("r"))
         {
             Instantiate(groundBeam, new Vector3(transform.position.x + Xdist2, transform.position.y + Ydist2, transform.position.z), Quaternion.identity);
