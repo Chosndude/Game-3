@@ -27,9 +27,10 @@ public class shootBeam : NetworkBehaviour
 			dir = 1;
         if (!shooting && Input.GetKey("e"))
         {
-			
-			Destroy(Instantiate(beam, new Vector3(transform.position.x + Xdist*dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject, 2);
-            shooting = true;
+			GameObject cur = (Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject);
+			Destroy (cur, 2);
+			cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
+			shooting = true;
         }
         else
             timer += Time.deltaTime;

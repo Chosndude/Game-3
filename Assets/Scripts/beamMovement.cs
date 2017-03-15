@@ -22,7 +22,12 @@ public class beamMovement : NetworkBehaviour
         transform.Translate(movement);
     }
 
-
+	public void updateDir(bool d)
+	{
+		dir = 1;
+		if (!d)
+			dir = -1;
+	}
 
 
 

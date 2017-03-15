@@ -19,3 +19,5 @@
 /Users/amamdani/Documents/Game-3/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/amamdani/Documents/Game-3/obj/Debug/Assembly-CSharp.dll
 /Users/amamdani/Documents/Game-3/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/amamdani/Documents/Game-3/Temp/bin/Debug/UnityEngine.Purchasing.dll
+/Users/amamdani/Documents/Game-3/Temp/bin/Debug/UnityEngine.Advertisements.dll
