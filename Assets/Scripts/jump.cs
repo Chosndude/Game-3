@@ -31,7 +31,7 @@ public class jump : NetworkBehaviour {
     
     void Jump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector3.up * 400f);
+        GetComponent<Rigidbody2D>().AddForce(Vector3.up * 500f);
         active = true;
     }
 
