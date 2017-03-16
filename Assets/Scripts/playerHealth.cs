@@ -13,7 +13,8 @@ public class playerHealth : NetworkBehaviour {
 	}
 
     public void takeDamage(int damage)
-	{	if (!isServer) {
+	{	
+		if (!isLocalPlayer) {
 			return;
 		}
         if (hitPoints > 0)

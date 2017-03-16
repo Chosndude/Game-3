@@ -31,6 +31,9 @@ public class updateHealth : NetworkBehaviour {
 
     public void takeDamage(int damage)
     {
+		if (!isLocalPlayer) {
+			return;
+		}
         if (hitPoint > 0)
         {
             hitPoint -= damage;

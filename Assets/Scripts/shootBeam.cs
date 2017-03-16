@@ -9,7 +9,7 @@ public class shootBeam : NetworkBehaviour
     public GameObject beam;
     public float reload = .5f;
     float timer;
-    bool shooting;
+    bool shooting=false;
     public float Xdist = 10f;
     public float Ydist = 10f;
 	float dir = 1;
@@ -27,10 +27,7 @@ public class shootBeam : NetworkBehaviour
 			dir = 1;
         if (!shooting && Input.GetKey("e"))
         {
-			GameObject cur = (Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject);
-			Destroy (cur, 2);
-			cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
-			shooting = true;
+			CmdShoot ();
         }
         else
             timer += Time.deltaTime;
@@ -40,5 +37,15 @@ public class shootBeam : NetworkBehaviour
             timer = 0f;
         }
     }
+
+	[Command]
+	void CmdShoot(){
+		GameObject cur = (Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject);
+		NetworkServer.Spawn (cur);
+		Destroy (cur, 2);
+		cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
+		shooting = true;
+	}
+
 
 }
