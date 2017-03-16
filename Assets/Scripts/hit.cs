@@ -11,17 +11,18 @@ public class hit : NetworkBehaviour
     bool inTrigger;
     public Animator anim;
     GameObject enemy;
-    bool pos = true;
+    bool pos = false;
     void Update()
     {
-        if (pos != gameObject.GetComponentInParent<playerMovement>().getDirection())
+        print(transform.position.x + " " + GetComponentInParent<playerMovement>().GetComponent<Transform>().position.x);
+        if (pos != GetComponentInParent<playerMovement>().getDirection())
         {
-            pos = gameObject.GetComponentInParent<playerMovement>().getDirection();
-			transform.position = new Vector3(gameObject.transform.position.x + (gameObject.transform.position.x - transform.position.x), transform.position.y, transform.position.z);
+            print("one");
+            pos = GetComponentInParent<playerMovement>().getDirection();
+            transform.position = new Vector3(GetComponentInParent<playerMovement>().GetComponent<Transform>().position.x + (GetComponentInParent<playerMovement>().GetComponent<Transform>().position.x - transform.position.x), transform.position.y, transform.position.z);
         }
-        else
-			transform.position.Set(transform.position.x + 2, transform.position.y, transform.position.z);
-            print(attacking);
+        
+
         if (attacking == false && inTrigger && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .75f)
         {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("jab_right"))
