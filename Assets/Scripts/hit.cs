@@ -11,7 +11,7 @@ public class hit : NetworkBehaviour
     bool inTrigger;
     public Animator anim;
     GameObject enemy;
-    bool pos = false;
+    bool pos = true;
     void Update()
     {
         print(transform.position.x + " " + GetComponentInParent<playerMovement>().GetComponent<Transform>().position.x);
