@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class playerMovement : NetworkBehaviour {
-
+	public Transform bulletSpawn;
+	public GameObject beam;
     public float speed = 8f;
     float speedCopy;
     Vector3 movement;
@@ -29,6 +30,11 @@ public class playerMovement : NetworkBehaviour {
 
         float h = Input.GetAxisRaw("Horizontal");
         Move(h);
+
+		if (Input.GetKeyDown("e"))
+		{
+			CmdShoot();
+		}
     }
     
     void Move(float h)
@@ -75,4 +81,25 @@ public class playerMovement : NetworkBehaviour {
     {
         speed = speedCopy;
     }
+	[Command]
+	public void CmdShoot(){
+		var bullet = (GameObject)Instantiate(
+			beam,new Vector3 (bulletSpawn.position.x + 2, bulletSpawn.position.y + 2, bulletSpawn.position.z),
+
+			bulletSpawn.rotation);
+
+		// Add velocity to the bullet
+		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+
+		// Spawn the bullet on the Clients
+		NetworkServer.SpawnWithClientAuthority(bullet);
+//		NetworkServer.Spawn(bullet);
+
+		// Destroy the bullet after 2 seconds
+		Destroy(bullet, 2.0f);
+
+
+	}
+
+
 }

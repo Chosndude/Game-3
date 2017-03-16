@@ -13,8 +13,10 @@ public class jump : NetworkBehaviour {
         //print((transform.position.y-(transform.localScale.y/2) - (hit.transform.position.y+transform.localScale.y/2)));
         if (hit.collider != null && (transform.position.y - (transform.localScale.y / 2) - (hit.transform.position.y + transform.localScale.y / 2)) < .1f)
         {
-            if (Input.GetKey("space") && active == false)
-                Jump();
+			if (Input.GetKey ("space") && active == false) {
+				CmdJump ();
+				Jump ();
+			}
         }
         if (active) {
             timer += Time.deltaTime;
@@ -28,12 +30,20 @@ public class jump : NetworkBehaviour {
         }
         
 	}
-    
-    void Jump()
+
+	[Command]
+    void CmdJump()
     {
         GetComponent<Rigidbody2D>().AddForce(Vector3.up * 500f);
         active = true;
     }
+
+	void Jump(){
+		if (!isServer) {
+			GetComponent<Rigidbody2D> ().AddForce (Vector3.up * 500f);
+			active = true;
+		}
+	}
 
     public bool onGround()
     {

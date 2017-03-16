@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 public class shootBeam : NetworkBehaviour
 {
 
-
     public GameObject beam;
     public float reload = .5f;
     float timer;
@@ -25,9 +24,10 @@ public class shootBeam : NetworkBehaviour
 			dir = -1;
 		else
 			dir = 1;
-        if (!shooting && Input.GetKey("e"))
+		if (!shooting && Input.GetKeyDown("e"))
         {
 			CmdShoot ();
+//			Shoot ();
         }
         else
             timer += Time.deltaTime;
@@ -40,12 +40,22 @@ public class shootBeam : NetworkBehaviour
 
 	[Command]
 	void CmdShoot(){
-		GameObject cur = (Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity) as GameObject);
-		NetworkServer.Spawn (cur);
-		Destroy (cur, 2);
-		cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
-		shooting = true;
+		{
+			if (isServer) {
+				GameObject cur = ((GameObject)Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity));
+			NetworkServer.Spawn (cur);
+				Destroy (cur, 2);
+				cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
+				shooting = true;
+			}
+		}
 	}
 
 
+//	void Shoot(){
+//		GameObject cur = ((GameObject)Instantiate (beam, new Vector3 (transform.position.x + Xdist * dir, transform.position.y + Ydist, transform.position.z), Quaternion.identity));
+//		Destroy (cur, 2);
+//		cur.GetComponent<beamMovement> ().updateDir (GetComponent<playerMovement> ().getDirection ());
+//		shooting = true;
+//	}
 }
