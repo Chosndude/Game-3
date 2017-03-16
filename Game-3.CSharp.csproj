@@ -75,8 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AttackController.cs" />
     <Compile Include="Assets\Billboard.cs" />
     <Compile Include="Assets\ChangeSizeWithRatio.cs" />
+    <Compile Include="Assets\RockHit.cs" />
     <Compile Include="Assets\Scripts\Beam.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Assets\Scripts\playerMovement.cs" />
     <Compile Include="Assets\Scripts\shootBeam.cs" />
     <Compile Include="Assets\Scripts\updateHealth.cs" />
+    <Compile Include="Assets\Teleport.cs" />
     <Compile Include="Assets\groundBeam.cs" />
     <Compile Include="Assets\groundBeamMovement.cs" />
     <Compile Include="Assets\shootGroundBeam.cs" />
